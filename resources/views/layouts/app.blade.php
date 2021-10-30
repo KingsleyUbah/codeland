@@ -7,36 +7,25 @@
     <title>CodeLand - No.1 Coding Forum</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
 </head>
-<body class="bg-white-100">    
-    <div class="container">
-        <nav class="flex justify-between p-6 text-2xl bg-gray-700 text-white h-16" >
-            <div class="flex justify-around items-center ml-10">
-                <img src="{{ asset('codelandbars.png') }}" class="h-10 w-10" alt="">
-                <h1 class="text-3xl ml-4 font-semibold lowercase">Codeland</h1>
-            </div>
-
-            <ul class="flex justify-between items-center font-serif uppercase text-base">
-                @auth
-                <li class="mx-5 p-1 text-yellow-50"><a href="/home">FAQS</a></li>
-                <li class="mx-5 p-1 bg-yellow-50 text-gray-700" ><a href="{{ route('register') }}">Kingsley Ubah</a></li>
-                <li class="mx-5 p-1" ><a href="/home">Log Out</a></li>
-                @endauth
+<body class="bg-gray-100">    
+    @include('layouts.partials.navbar')    
+    <div class="my-8">
+        <div class="flex max-w-7xl justify-between">
+            <div>
             
-                @guest
-                <li class="mx-5 p-1 text-yellow-50"><a href="/home">FAQS</a></li>
-                <li class="mx-5 p-1" ><a href="{{ route('register') }}">Register</a></li>
-                <li class="mx-5 p-1 bg-yellow-50 text-gray-700" ><a href="/home">Log In</a></li>
-                @endguest
-            </ul>
-        </nav>
-            <h1>Haha</h1>
-            @yield('content')
-    
-
-        
-        <footer class="text-2xl bg-gray-700 text-white h-16" >
-            <h1>Footer Content</h1>
-        </footer>
+            </div>
+            <a class="p-2 bg-blue-400 mb-3" href="{{route('thread.create')}}">Create thread</a>
+        </div>
+    <hr class="max-w-7xl mx-auto">
     </div>
+    <div class="max-w-7xl mx-auto flex font-body items-center h-48 text-lg">
+        <div class="bg-gray-100 w-2/6 h-full p-5">
+            @include('layouts.partials.categories')
+        </div>
+        <div class="w-4/6 h-full">
+        <h2 class="mb-7 text-4xl">@yield('heading')</h2>
+        @yield('content')
+    </div>
+    
 </body>
 </html>

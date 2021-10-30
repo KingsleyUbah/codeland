@@ -1,10 +1,10 @@
 @extends('layouts.auth')
 
 @section('content')
-     <div class="bg-gray-200 text-center h-40 p-5">
-         <div class="flex justify-around max-w-md mx-auto">
+     <div class="bg-yellow-200 text-center h-60 p-5 font-body">
+         <div class="flex justify-around items-center max-w-lg mx-auto mt-5 mb-5">
             <img src="{{ asset('communities.png') }}" class="h-10 w-10" alt="">
-            <h1 class="text-4xl mb-5">Join our community</h1>
+            <h1 class="text-5xl mb-5">Join our community</h1>
         </div>
         <p class="text-xl">CodeLand is the largest community of web developers on the web. <br> We currently have over 3000 users, active in over 50 forums</p>
     </div>

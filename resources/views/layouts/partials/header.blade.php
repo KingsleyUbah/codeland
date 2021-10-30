@@ -1,0 +1,1 @@
+<h2 class="mb-7">@yield('heading')</h2>
