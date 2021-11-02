@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -38,9 +39,11 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::resource('thread', ThreadController::class);
 
 
-//Route::get('/thread', [ThreadController::class, 'index']);
-//Route::get('/thread/create', [ThreadController::class, 'create']);
-//Route::post('/thread/create', [ThreadController::class, 'store']);
+Route::post('comment/create/{thread}', [CommentController::class, 'addThreadComment'])->name('threadcomment.store');
+Route::put('comment/{comment}', [CommentController::class, 'updateThreadComment'])->name('threadcomment.update');
+Route::delete('comment/{comment}', [CommentController::class, 'deleteThreadComment'])->name('threadcomment.destroy');
+
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
