@@ -23,6 +23,22 @@ class CommentController extends Controller
         $thread->comments()->save($comment);
         return back()->withMessage('Comment Created!');
     }
+
+
+    public function addReplyComment(Request $request, Comment $comment) 
+    {
+        $this->validate($request, [
+            'body'=>'required'
+        ]);
+
+        $reply = new Comment();
+        $reply->body = $request->body;
+        $reply->user_id = auth()->user()->id;
+
+
+        $comment->comments()->save($reply);
+        return back()->withMessage('Reply Created!');
+    }
     
     
     /**
@@ -60,7 +76,7 @@ class CommentController extends Controller
         {
             abort(401, 'Unauthorized');
         }
-        
+
         $comment->delete();
 
         return back()->withMessage('Deleted!');

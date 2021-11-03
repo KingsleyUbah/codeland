@@ -16,8 +16,17 @@ cancelBtn.addEventListener('click', () => {
 
 closeBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    
+
     overlay.classList.add('hidden');
     overlay.classList.remove('flex');
 })
+
+
+function toggleForm(id) {
+    document.querySelector('.reply-form-'+id).classList.toggle('hidden');
+}
+
+function toggleCommentForm() {
+    document.querySelector('#thread-comment-form').classList.toggle('hidden');
+}
 

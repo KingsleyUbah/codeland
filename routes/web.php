@@ -43,6 +43,10 @@ Route::post('comment/create/{thread}', [CommentController::class, 'addThreadComm
 Route::put('comment/{comment}', [CommentController::class, 'updateThreadComment'])->name('threadcomment.update');
 Route::delete('comment/{comment}', [CommentController::class, 'deleteThreadComment'])->name('threadcomment.destroy');
 
+Route::post('reply/create/{comment}', [CommentController::class, 'addReplyComment'])->name('replycomment.store');
+Route::put('reply/{comment}', [CommentController::class, 'updateReplyComment'])->name('replycomment.update');
+Route::delete('reply/{comment}', [CommentController::class, 'deleteReplyComment'])->name('replycomment.destroy');
+
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

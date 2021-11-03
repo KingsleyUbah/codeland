@@ -24,6 +24,7 @@
         </div>
         <div class="w-4/6 h-full ml-">
         <h2 class="mb-7 text-4xl">@yield('heading')</h2>
+        <hr>
         @yield('content')
     </div>
     

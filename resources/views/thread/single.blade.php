@@ -19,72 +19,29 @@
     </div>
     @endif
     @endauth
+
+    <a class="bg-none mt-6 w-44 inline-block flex items-center" onClick="toggleCommentForm()">Reply<img src="{{ asset('reply.png') }}" class="h-4 w-4 ml-1" alt=""></a>
+
+    @include('layouts.partials.comment-form')
     
-    <h2>Replies</h2>
+    <h2 class="m-6">Replies to <span class="bg-blue-100 p-1 rounded">{{$thread->subject}}</span></h2>
+   
     @foreach($thread->comments as $comment)
 
-        <div>
-            <h3>{{$comment->body}}</h3>
-            <p>{{$comment->user->name}}</p>
-            <div class="w-24 my-7 flex justify-between" id="actions">
-             <a class="p-1 rounded bg-blue-400" href="#{{ $comment->id }}" id="edit-btn">Edit</a>
-            
-             <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center overlay" id="{{$comment->id}}">
-                <div class="bg-gray-100 p-6 shadow-xl w-4/12 rounded">
-                    <div class="">
-                        <div class="my-3 p-1 flex justify-between">
-                            <span>Edit comment?</span>
-                            <img src="{{ asset('cancel.png') }}" class="h-4 w-4 cursor-pointer" id="cancel-btn" alt="cancel">
-                        </div>
-                    <form action="{{ route('threadcomment.update', $comment->id) }}" method="post">
-                        {{csrf_field()}}
-                        {{method_field('put')}}
-                        <div class="mb-4 max-w-lg">
-                            <label for="body" class="sr-only">Body</label>
-                            <textarea name="body" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('body') border-red-500 @enderror" id="body" placeholder="Your body" value="">{{$comment->body}}</textarea>
+        <div class="ml-32 p-3">
+            <div id="single" class="bg-white flex justify-between shadow-xl p-5 m-3 rounded text-base">
 
-                            @error('body')
-                            <div class="text-red-500 mt-2 text-sm">
-                                {{$message}}
-                            </div>
-                            @enderror
-
-                            <div class="my-4 flex justify-end">
-                                <button type="submit" class=" text-black px-4 py-3 rounded text-base w-32" id="close-btn">Close</button>
-                                <button type="submit" class="bg-blue-500 text-white px-3 py-2 rounded text-base w-32" id="save-btn">Save Changes</button>
-                            </div>  
-                        </div>
-                    </form>
-                    </div>
-                </div>
-             </div>            
+              @include('layouts.partials.commenter')
+              @include('layouts.partials.comment-actions')
             
-             <form action="{{ route('threadcomment.destroy', $comment->id) }}" method="post">
-                @csrf
-                {{method_field('DELETE')}}
-                <button type="submit" class="p-1 rounded bg-red-500 ml-5">Delete</button>
-            </form>
             </div>
-        <hr>
-    </div>
+
+            <br>
+            <hr>
+
+            @include('layouts.partials.reply-form')
+
+            @include('layouts.partials.replies')
+      </div>
     @endforeach
- 
-    <form action="{{ route('threadcomment.store', $thread->id) }}" method="post">
-        {{csrf_field()}}
-        <legend class="my-4">Form Title</legend>
-        <div class="mb-4 max-w-lg">
-                <label for="body" class="sr-only">Body</label>
-                <textarea name="body" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('body') border-red-500 @enderror" id="body" placeholder="Your body" value=""></textarea>
-
-                @error('body')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{$message}}
-                    </div>
-                @enderror
-
-                <div class="my-4">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Submit</button>
-                </div>  
-        </div>
-    </form>
 @endsection
