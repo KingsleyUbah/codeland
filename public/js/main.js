@@ -1,7 +1,7 @@
 const overlay = document.querySelector('.overlay')
-const editBtn = document.querySelector('#edit-btn')
-const cancelBtn = document.querySelector('#cancel-btn')
-const closeBtn = document.querySelector('#close-btn')
+const editBtn = document.querySelector('.edit-btn')
+const cancelBtn = document.querySelector('.cancel-btn')
+const closeBtn = document.querySelector('.close-btn')
 
 
 editBtn.addEventListener('click', () => {
@@ -30,3 +30,22 @@ function toggleCommentForm() {
     document.querySelector('#thread-comment-form').classList.toggle('hidden');
 }
 
+function toggleCommentModal(id) {
+    document.querySelector('.comment-overlay-'+id).classList.toggle('hidden');
+    document.querySelector('.comment-overlay-'+id).classList.toggle('flex');
+}
+
+function closeCommentModal(id) {
+    document.querySelector('.comment-overlay-'+id).classList.toggle('hidden');
+    document.querySelector('.comment-overlay-'+id).classList.toggle('flex');
+}
+
+function toggleReplyModal(id) {
+    document.querySelector('.reply-overlay-'+id).classList.toggle('hidden');
+    document.querySelector('.reply-overlay-'+id).classList.toggle('flex');
+}
+
+function closeReplyModal(id) {
+    document.querySelector('.reply-overlay-'+id).classList.toggle('hidden');
+    document.querySelector('.reply-overlay-'+id).classList.toggle('flex');
+}

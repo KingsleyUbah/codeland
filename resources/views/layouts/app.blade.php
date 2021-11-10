@@ -7,23 +7,25 @@
     <title>CodeLand - No.1 Coding Forum</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
 </head>
-<body class="bg-gray-100">    
+<body class="bg-gray-200">    
     @include('layouts.partials.navbar')    
     <div class="my-8">
         <div class="flex max-w-7xl justify-between">
             <div>
             
             </div>
-            <a class="p-2 bg-blue-400 mb-3" href="{{route('thread.create')}}">Create thread</a>
+            @auth
+            <a class="px-3 py-1 bg-gray-700 mb-3 rounded text-white" href="{{route('thread.create')}}"><img src="{{ asset('new-message.png') }}" class="h-9 w-9" alt="logo"></a>
+            @endauth
         </div>
     <hr class="max-w-7xl mx-auto">
     </div>
     <div class="max-w-7xl p-6 mx-auto flex font-body items-center h-48 text-lg">
-        <div class="bg-gray-100 w-2/6 h-full">
-            @include('layouts.partials.categories')
+        <div class="w-2/6 h-full">
+            @yield('topside')
         </div>
-        <div class="w-4/6 h-full ml-">
-        <h2 class="mb-7 text-4xl">@yield('heading')</h2>
+        <div class="w-4/6 h-full">
+            @yield('heading')
         <hr>
         @yield('content')
     </div>

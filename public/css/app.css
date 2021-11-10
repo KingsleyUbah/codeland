@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap);
 /*! tailwindcss v2.2.17 | MIT License | https://tailwindcss.com */
 
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
@@ -22359,6 +22360,10 @@ video {
 
 .font-body{
   font-family: Nunito;
+}
+
+.font-heading{
+  font-family: "Roboto Condensed";
 }
 
 .text-xs{
@@ -53605,6 +53610,10 @@ video {
     font-family: Nunito;
   }
 
+  .sm\:font-heading{
+    font-family: "Roboto Condensed";
+  }
+
   .sm\:text-xs{
     font-size: 0.75rem;
     line-height: 1rem;
@@ -84835,6 +84844,10 @@ video {
 
   .md\:font-body{
     font-family: Nunito;
+  }
+
+  .md\:font-heading{
+    font-family: "Roboto Condensed";
   }
 
   .md\:text-xs{
@@ -116069,6 +116082,10 @@ video {
     font-family: Nunito;
   }
 
+  .lg\:font-heading{
+    font-family: "Roboto Condensed";
+  }
+
   .lg\:text-xs{
     font-size: 0.75rem;
     line-height: 1rem;
@@ -147301,6 +147318,10 @@ video {
     font-family: Nunito;
   }
 
+  .xl\:font-heading{
+    font-family: "Roboto Condensed";
+  }
+
   .xl\:text-xs{
     font-size: 0.75rem;
     line-height: 1rem;
@@ -178531,6 +178552,10 @@ video {
 
   .\32xl\:font-body{
     font-family: Nunito;
+  }
+
+  .\32xl\:font-heading{
+    font-family: "Roboto Condensed";
   }
 
   .\32xl\:text-xs{

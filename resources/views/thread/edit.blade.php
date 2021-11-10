@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
-@section('heading', "Update Thread")
+@section('topside')
+@include('layouts.partials.categories')
+@endsection
+
+@section('heading')
+<h2 class="mb-7 text-3xl font-heading">Update Thread</h2>
+@endsection
 
 @section('content')
 <div class="max-w-lg">

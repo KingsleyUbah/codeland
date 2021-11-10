@@ -1,6 +1,6 @@
 {{-- This is the for storing a thread comment --}}
 
-<form action="{{ route('threadcomment.store', $thread->id) }}" method="post" class="hidden" id="thread-comment-form">
+<form action="{{ route('threadcomment.store', $thread) }}" method="post" class="hidden w-5/6" id="thread-comment-form">
     {{csrf_field()}}
     <legend class="my-4">{{$thread->subject}}</legend>
     <div class="mb-4 max-w-lg">

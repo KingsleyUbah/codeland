@@ -24,6 +24,26 @@ class CommentController extends Controller
         return back()->withMessage('Comment Created!');
     }
 
+    public function likeThreadComment(Request $request, Comment $comment) 
+    {
+        if ($comment->likedBy($request->user())) {
+            return back();
+        }
+
+        $comment->likes()->create([
+            'user_id' => $request->user()->id,
+        ]);
+    
+        return back();
+    }
+
+    public function unlikeThreadComment(Request $request, Comment $comment) 
+    {
+        $request->user()->likes()->where('likeable_id', $comment->id)->delete();
+
+        return back();
+    }
+
 
     public function addReplyComment(Request $request, Comment $comment) 
     {
@@ -41,14 +61,23 @@ class CommentController extends Controller
     }
     
     
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
     public function updateThreadComment(Request $request, Comment $comment)
+    {
+        $this->validate($request, [
+            'body'=>'required'
+        ]);
+
+        if(auth()->user()->id != $comment->user_id) 
+        {
+            abort(401, 'Unauthorized');
+        }
+
+        $comment->update($request->all());
+
+        return back()->withMessage('Updated!');
+    }
+
+    public function updateReplyComment(Request $request, Comment $comment)
     {
         $this->validate($request, [
             'body'=>'required'
@@ -71,6 +100,18 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function deleteThreadComment(Comment $comment)
+    {
+        if(auth()->user()->id != $comment->user_id) 
+        {
+            abort(401, 'Unauthorized');
+        }
+
+        $comment->delete();
+
+        return back()->withMessage('Deleted!');
+    }
+
+    public function deleteReplyComment(Comment $comment)
     {
         if(auth()->user()->id != $comment->user_id) 
         {

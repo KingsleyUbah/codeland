@@ -34,6 +34,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function getRouteKeyName() 
+    {
+        return 'username';
+    }
+
     /**
      * The attributes that should be cast.
      *
@@ -46,5 +51,10 @@ class User extends Authenticatable
     public function threads() 
     {
         return $this->hasMany(Thread::class);
+    }
+
+    public function likes() 
+    {
+        return $this->hasMany(Like::class);
     }
 }

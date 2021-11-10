@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Thread;
+use App\Models\Like;
 use Illuminate\Http\Request;
 
 
@@ -47,7 +48,7 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'subject' => 'required|min:10',
+            'subject' => 'required|max:50',
             'type' => 'required',
             'body' => 'required|min:20'
         ]);
@@ -121,5 +122,25 @@ class ThreadController extends Controller
         $thread->delete();
 
         return redirect()->route('thread.index');
+    }
+
+    public function like(Thread $thread, Request $request)
+    {
+        if ($thread->likedBy($request->user())) {
+            return back();
+        }
+
+        $thread->likes()->create([
+            'user_id' => $request->user()->id,
+        ]);
+    
+        return back();
+    }
+
+    public function unlike(Thread $thread, Request $request)
+    {
+        $request->user()->likes()->where('likeable_id', $thread->id)->delete();
+
+        return back();
     }
 }

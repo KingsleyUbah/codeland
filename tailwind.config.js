@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Nunito']
+        body: ['Nunito'],
+        heading: ['"Roboto Condensed"']
       }
     },
   },

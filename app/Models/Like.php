@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Like extends Model
 {
     use HasFactory;
 
-    protected $fillable=['body', 'user_id'];
+    protected $fillable=['user_id'];
 
-    public function commentable() 
+    public function likeable() 
     {
         return $this->morphTo();
     }
@@ -21,18 +21,8 @@ class Comment extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function comments() 
-    {
-        return $this->morphMany(Comment::class, 'commentable')->latest();
-    }
-
     public function likes() 
     {
         return $this->morphMany(Like::class, 'likeable');
-    }
-
-    public function likedBy(User $user) 
-    {
-        return $this->likes->contains('user_id', $user->id);
     }
 }

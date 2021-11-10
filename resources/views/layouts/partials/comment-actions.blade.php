@@ -1,15 +1,16 @@
 {{-- Action buttons (edit and delete) --}}
-
-<div class="w-24 mr-1/3 flex justify-between" id="actions">
-    <a class="p-1" href="#{{ $comment->id }}" id="edit-btn"><img src="{{ asset('edit.png') }}" class="h-5 w-6 cursor-pointer" id="cancel-btn" alt="cancel"></a>
+@auth
+@if(auth()->user()->id == $comment->user_id)
+<div class="flex justify-end pr-5 pb-5" id="actions">
+    <a class="p-1 comment-edit-btn" href="#{{ $comment->id }}" onClick="toggleCommentModal('{{$comment->id}}')"><img src="{{ asset('edit.png') }}" class="h-5 w-6 cursor-pointer"  alt="edit"></a>
             
     {{-- Modal for updating comment on thread --}}
-    <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center overlay" id="{{$comment->id}}">
+    <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center comment-overlay-{{$comment->id}}" id="{{$comment->id}}">
         <div class="bg-gray-100 p-6 shadow-xl w-4/12 rounded">
             <div class="">
                 <div class="my-3 p-1 flex justify-between">
                     <span>Edit comment?</span>
-                    <img src="{{ asset('cancel.png') }}" class="h-4 w-4 cursor-pointer" id="cancel-btn" alt="cancel">
+                    <img src="{{ asset('cancel.png') }}" class="h-4 w-4 cursor-pointer comment-cancel-{{$comment->id}}"  alt="cancel" onClick="cancelModal('{{ $comment->id }}')">
                 </div>
                 <form action="{{ route('threadcomment.update', $comment->id) }}" method="post">
                     {{csrf_field()}}
@@ -26,7 +27,7 @@
                             @enderror
 
                         <div class="my-4 flex justify-end">
-                            <button type="submit" class=" text-black px-4 py-3 rounded text-base w-32" id="close-btn">Close</button>
+                            <a class=" text-black px-4 py-3 rounded text-base w-32 cursor-pointer" onClick="closeCommentModal('{{$comment->id}}')">Close</a>
                             <button type="submit" class="bg-blue-500 text-white px-3 py-2 rounded text-base w-32" id="save-btn">Save Changes</button>
                         </div>  
                     </div>
@@ -41,3 +42,5 @@
         <button type="submit" class="p-1 rounded bg-red-400 ml-5"><img src="{{ asset('bin.png') }}" class="h-4 w-5 cursor-pointer"  alt="cancel"></button>
     </form>
 </div>
+@endif
+@endauth
