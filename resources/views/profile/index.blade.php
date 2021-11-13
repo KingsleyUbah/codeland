@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('heading')
+@section('section-heading')
 <h2 class="mb-7 text-3xl font-heading">Latest threads by {{$user->username}}</h2>
 @endsection
 
@@ -36,4 +36,5 @@
             @endforelse
         </div>
 
+        @include('layouts.partials.profile-update')
 @endsection

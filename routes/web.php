@@ -65,6 +65,7 @@ Route::delete('reply/{comment}', [CommentController::class, 'deleteReplyComment'
 
 // User profile routes
 Route::get('/user/{user}/profile', [UserProfileController::class, 'index'])->name('userprofile')->middleware('auth');
+Route::put('/user/{user}', [UserProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
 // Dashboard route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

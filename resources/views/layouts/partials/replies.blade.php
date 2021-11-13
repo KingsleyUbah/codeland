@@ -9,7 +9,7 @@
             <div id="replier" class="">
                 <div class="bg-gray-300 w-full rounded p-4 flex items-center">
                     <img src="{{ asset('profile.png') }}" class="h-12 w-12 mr-5" alt="picture">
-                    <h3 class="mb-3 text-gray-900">{{ $reply->user->name }} - 1 minute ago</h3>
+                    <h3 class="mb-3 text-gray-900">{{ $reply->user->name }} - {{$reply->created_at->diffForHumans()}}</h3>
                 </div>
                 <div class="p-4">
                     {{ $reply->body }}

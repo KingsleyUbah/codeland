@@ -9,27 +9,41 @@
 </head>
 <body class="bg-gray-200">    
     @include('layouts.partials.navbar')    
-    <div class="my-8">
-        <div class="flex max-w-7xl justify-between">
-            <div>
-            
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between mt-6 w-4/6 ml-96">
+            <div class="">
+                @yield('heading')
             </div>
             @auth
-            <a class="px-3 py-1 bg-gray-700 mb-3 rounded text-white" href="{{route('thread.create')}}"><img src="{{ asset('new-message.png') }}" class="h-9 w-9" alt="logo"></a>
+            <a class="px-3 py-1 mb-3 rounded text-white" href="{{route('thread.create')}}"><img src="{{ asset('createMes.png') }}" class="h-16 w-16" alt="logo"></a>
             @endauth
         </div>
-    <hr class="max-w-7xl mx-auto">
     </div>
+
+    <hr class="border-gray-300 max-w-7xl mx-auto">
+
     <div class="max-w-7xl p-6 mx-auto flex font-body items-center h-48 text-lg">
         <div class="w-2/6 h-full">
             @yield('topside')
         </div>
         <div class="w-4/6 h-full">
-            @yield('heading')
+            @yield('section-heading')
         <hr>
-        @yield('content')
+            @yield('content')
+        </div>
     </div>
     
 </body>
 </html>
 <script src="{{ asset('js/main.js') }}"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/standalone/selectize.min.js" integrity="sha512-pF+DNRwavWMukUv/LyzDyDMn8U2uvqYQdJN0Zvilr6DDo/56xPDZdDoyPDYZRSL4aOKO/FGKXTpzDyQJ8je8Qw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(function () {
+        $('#tag').selectize();
+    })
+</script>

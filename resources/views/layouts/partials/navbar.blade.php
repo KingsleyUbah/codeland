@@ -21,23 +21,26 @@
 
             <ul class="flex justify-around items-center font-body text-base">
                     @auth
-                    <li class="">
+                    <li class="mx-6">
+                        <a class="flex justify-between items-center" href=""><img src="{{ asset('notifications.png') }}" class="h-8 w-8" alt="icon"><span class="p-1 bg-white text-red-500">{{ count(auth()->user()->unreadNotifications) }}</span></a>
+                    </li>
+                    <li class="mr-6">
                         <a href="{{ route('userprofile', auth()->user()) }}" class="text-red-500 p-1 px-2">{{auth()->user()->name}}</a>
                     </li>
                     <li>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <button type="submit" class="bg-red-500 p-1 flex text-white">Log out</button>
+                            <button type="submit" class="bg-red-500 p-1 flex rounded text-white">Log out</button>
                         </form>
                     </li>
                     @endauth
             
                     @guest
-                    <li class="" >
-                        <a href="{{ route('register') }}" class="text-red-500 p-1 px-2">Register</a>
+                    <li class="mr-5" >
+                        <a href="{{ route('register') }}" class="bg-red-500 rounded text-white p-1 px-2">Register</a>
                     </li>
                     <li class="">
-                        <a href="{{ route('login') }}" class="bg-red-500 p-1 flex text-white">Log In</a>
+                        <a href="{{ route('login') }}" class="bg-red-500 p-1 flex rounded text-white">Log In</a>
                     </li>
                     @endguest
                 </ul>

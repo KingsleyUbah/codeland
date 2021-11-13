@@ -1,7 +1,7 @@
-const overlay = document.querySelector('.overlay')
-const editBtn = document.querySelector('.edit-btn')
+const overlay = document.querySelector('.profile-overlay')
+const editBtn = document.querySelector('.profile-edit')
 const cancelBtn = document.querySelector('.cancel-btn')
-const closeBtn = document.querySelector('.close-btn')
+const closeBtn = document.querySelector('.profile-close')
 
 
 editBtn.addEventListener('click', () => {
@@ -9,10 +9,6 @@ editBtn.addEventListener('click', () => {
     overlay.classList.add('flex');
 })
 
-cancelBtn.addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    overlay.classList.remove('flex');
-})
 
 closeBtn.addEventListener('click', (event) => {
     event.preventDefault();

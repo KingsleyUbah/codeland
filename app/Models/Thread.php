@@ -9,7 +9,7 @@ class Thread extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $fillable=['subject', 'user_id', 'body'];
 
     public function user() 
     {
@@ -29,5 +29,10 @@ class Thread extends Model
     public function likedBy(User $user) 
     {
         return $this->likes->contains('user_id', $user->id);
+    }
+
+    public function tags() 
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
