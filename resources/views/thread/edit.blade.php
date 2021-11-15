@@ -5,7 +5,7 @@
 @endsection
 
 @section('heading')
-<h2 class="mb-7 text-3xl font-heading">Update Thread</h2>
+<h2 class="text-3xl font-heading">Update Thread</h2>
 @endsection
 
 @section('content')

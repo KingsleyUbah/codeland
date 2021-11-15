@@ -10,7 +10,10 @@ module.exports = {
       fontFamily: {
         body: ['Nunito'],
         heading: ['"Roboto Condensed"']
-      }
+      },
+      margin: {
+        header: '30rem'
+      },
     },
   },
   variants: {

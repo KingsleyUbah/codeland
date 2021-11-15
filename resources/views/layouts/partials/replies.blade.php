@@ -1,20 +1,19 @@
 {{-- This is the replies pertaining to a single comment --}}
 
-<div id="replies" class="ml-44 mt-6">
+<div id="reply-{{$comment->id}}" class="ml-44 mt-6 text-base hidden border-solid border-2 border-gray-500">
     
     @foreach($comment->comments as $reply)
-
-        <div id="single-reply" class="m-3 rounded text-base"> 
-        
-            <div id="replier" class="">
-                <div class="bg-gray-300 w-full rounded p-4 flex items-center">
-                    <img src="{{ asset('profile.png') }}" class="h-12 w-12 mr-5" alt="picture">
-                    <h3 class="mb-3 text-gray-900">{{ $reply->user->name }} - {{$reply->created_at->diffForHumans()}}</h3>
-                </div>
-                <div class="p-4">
-                    {{ $reply->body }}
-                </div>
+    <div class="p-4 flex items-start">
+        <img src="{{ asset('profile.png') }}" class="h-12 w-12 mr-5" alt="picture">
+        <div>
+            <div class="flex justify-between items-start w-full">
+                <h3 class="text-gray-900 font-bold">{{$reply->user->username}} - <span class="text-gray-500 italic">{{ Str::limit($reply->user->bio, 40) }}</span></h3>
+                <h3 class="text-gray-500">{{$reply->created_at->diffForHumans()}}</h3>
             </div>
+            <p>{{$reply->body}}</p>
+            
+        </div>
+    </div>      
 
             {{-- Action buttons (edit and delete) --}}
             @auth
@@ -59,9 +58,10 @@
                         {{method_field('DELETE')}}
                         <button type="submit" class="p-1 rounded bg-red-500 ml-5"><img src="{{ asset('bin.png') }}" class="h-4 w-5 cursor-pointer" id="cancel-btn" alt="cancel"></button>
                     </form>
-                </div>
-            </div>
-            @endif
-            @endauth
-    @endforeach
-  </div>
+        </div>
+    @endif
+@endauth
+@endforeach
+
+</div>
+  

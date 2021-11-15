@@ -1,4 +1,4 @@
-<div class="flex justify-between items-center mr-7">    
+<div class="flex justify-between items-center">    
         <a class="bg-gray-300 mr-3 rounded p-1 cursor-pointer" onClick="toggleForm('{{$comment->id}}')">Reply</a>
 
         <div>

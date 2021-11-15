@@ -9,26 +9,29 @@
 </head>
 <body class="bg-gray-200">    
     @include('layouts.partials.navbar')    
-    <div class="max-w-7xl mx-auto">
-        <div class="flex justify-between mt-6 w-4/6 ml-96">
-            <div class="">
-                @yield('heading')
+    <div class="max-w-7xl mx-auto flex justify-between divide-x divide-gray-400 items-center">
+            <div class="w-3/12">
+
             </div>
-            @auth
-            <a class="px-3 py-1 mb-3 rounded text-white" href="{{route('thread.create')}}"><img src="{{ asset('createMes.png') }}" class="h-16 w-16" alt="logo"></a>
-            @endauth
-        </div>
+            <div class="w-9/12 flex items-center justify-between">
+                <div class="p-5">
+                    @yield('heading')
+                </div>
+                @auth
+                <a class="rounded text-white" href="{{route('thread.create')}}"><img src="{{ asset('createMes.png') }}" class="h-16 w-16 p-5" alt="logo"></a>
+                @endauth
+            </div>
     </div>
 
     <hr class="border-gray-300 max-w-7xl mx-auto">
 
-    <div class="max-w-7xl p-6 mx-auto flex font-body items-center h-48 text-lg">
-        <div class="w-2/6 h-full">
+    <div class="max-w-7xl h-full divide-x divide-gray-400 mx-auto flex font-body items-start text-lg">
+        <div class="w-3/12 h-full p-5">
             @yield('topside')
         </div>
-        <div class="w-4/6 h-full">
+        <div class="w-9/12 h-full p-5">
             @yield('section-heading')
-        <hr>
+            <hr>
             @yield('content')
         </div>
     </div>

@@ -35,6 +35,4 @@
                 </div>
             @endforelse
         </div>
-
-        @include('layouts.partials.profile-update')
 @endsection

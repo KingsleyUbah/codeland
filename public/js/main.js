@@ -18,6 +18,12 @@ closeBtn.addEventListener('click', (event) => {
 })
 
 
+function toggleReplies(id) {
+    document.querySelector('#first-arrow-'+id).classList.toggle('hidden');
+    document.querySelector('#second-arrow-'+id).classList.toggle('hidden');
+    document.querySelector('#reply-'+id).classList.toggle('hidden');
+}
+
 function toggleForm(id) {
     document.querySelector('.reply-form-'+id).classList.toggle('hidden');
 }

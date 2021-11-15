@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use App\Models\Comment;
 use App\Models\Thread;
 use App\Models\User;
@@ -20,15 +21,22 @@ class UserProfileController extends Controller
     }
 
 
+    public function edit(User $user)
+    {
+        return view('profile.edit', compact('user'));
+    }
+
     public function update(Request $request, User $user) 
     {
-        /*
+        
         $this->validate($request, [
             'name' => 'required',
             'username' => 'required',
             'location' => 'required',
             'github' => 'required',
-            'bio' => 'required'
+            'bio' => 'required',
+            'email' => 'required|email',
+            'old_password' => 'required',
         ]);
 
         if(auth()->user()->id != $user->id) 
@@ -36,14 +44,23 @@ class UserProfileController extends Controller
             abort(401, 'Unauthorized');
         }
 
-        $user->update($request->all());
+        if(!Hash::check($request->old_password, $user->password)) 
+        {
+            return back()->withMessage('Incorrect password. Please try again');
+        }
         
-        $threads = Thread::where('user_id', $user->id)->latest()->get();
 
-        $comments = Comment::where('user_id', $user->id)->where('commentable_type', 'App\Models\Thread')->get();
-
+        $user->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'location' => $request->location,
+            'github' => $request->github,
+            'bio' => $request->bio,
+            'email' => $request->email,
+            'password' => Hash::make($request->new_password),
+        ]);
         
-        return view('profile.index', compact('threads', 'comments', 'user'));
-        */
+        return back()->withMessage('Profile Updated!');
+        
     }
 }
