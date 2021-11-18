@@ -18,3 +18,5 @@
             </div>  
     </div>
 </form>
+
+<hr class="border-gray-300">

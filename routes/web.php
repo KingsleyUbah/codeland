@@ -40,7 +40,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Thread routes
 Route::get('/thread', [ThreadController::class, 'index'])->name('thread.index');
-Route::get('/thread/create', [ThreadController::class, 'create'])->name('thread.create')->middleware('auth');
+Route::get('/thread/new', [ThreadController::class, 'create'])->name('thread.create')->middleware('auth');
 Route::post('/thread', [ThreadController::class, 'store'])->name('thread.store')->middleware('auth');
 Route::get('/thread/{thread}/edit', [ThreadController::class, 'edit'])->name('thread.edit')->middleware('auth');
 Route::get('/thread/{thread}', [ThreadController::class, 'show'])->name('thread.show');
@@ -66,7 +66,7 @@ Route::delete('reply/{comment}', [CommentController::class, 'deleteReplyComment'
 // User profile routes
 Route::get('/user/{user}/profile', [UserProfileController::class, 'index'])->name('userprofile')->middleware('auth');
 Route::put('/user/{user}', [UserProfileController::class, 'update'])->name('profile.update')->middleware('auth');
-Route::get('/user/{user}/edit', [UserProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::get('/user/{user}/editprofile', [UserProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
 
 // Dashboard route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -75,5 +75,12 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/latest', function () {
     return view('latest.index');
 });
+
+Route::get('/markAsRead', function () {
+    $id = auth()->user()->unreadNotifications[0]->id;
+    auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+
+    return back();
+})->name('markAsRead');
 
 

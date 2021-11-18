@@ -2,9 +2,9 @@
 
 <div class="flex justify-between">
     @auth
-    <div class="my-7 flex justify-between text-sm">
+    <div class="mt-7 flex justify-between text-sm">
         @if(auth()->user()->id == $comment->user_id)
-            <a class="text-gray-500 hover:underline" href="#{{ $comment->id }}" onClick="toggleCommentModal('{{$comment->id}}')">Edit</a>
+            <a class="text-red-900 hover:underline" href="#{{ $comment->id }}" onClick="toggleCommentModal('{{$comment->id}}')">Edit</a>
             
             {{-- Modal for updating comment on thread --}}
             <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center comment-overlay-{{$comment->id}}" id="{{$comment->id}}">
@@ -41,10 +41,10 @@
             <form action="{{ route('threadcomment.destroy', $comment->id) }}" method="post">
                 @csrf
                 {{method_field('DELETE')}}
-                <button type="submit" class="hover:underline text-gray-500 mx-5">Delete</button>
+                <button type="submit" class="hover:underline text-red-900 mx-5">Delete</button>
             </form>
         @endif
-            <a class="text-gray-500 cursor-pointer hover:underline flex items-center" onClick="toggleReplies('{{$comment->id}}')">
+            <a class="text-red-900 cursor-pointer hover:underline flex items-center" onClick="toggleReplies('{{$comment->id}}')">
                 {{$comment->comments->count()}} {{ Str::plural('reply', $comment->comments->count()) }}
                 
                 @if($comment->comments->count() > 0)
@@ -59,18 +59,22 @@
         </div>
         @endauth
         <div class="flex justify-between items-center text-sm">    
-            <span class="mr-3">{{ $comment->likes->count() }} {{ Str::plural('person', $comment->likes->count()) }} liked this</span>
+            <span class="mr-3 italic text-gray-500">{{ $comment->likes->count() }} {{ Str::plural('person', $comment->likes->count()) }} liked this</span>
             @auth
             @if(!$comment->likedBy(auth()->user()))
                 <form action="{{ route('threadcomment.like', $comment) }}" method="post" class="mr-3">
                     @csrf
-                    <button type="submit" class="text-blue-500 bg-gray-300 p-1 rounded">Like</button>
+                    <button type="submit" class="text-blue-500 bg-gray-300 p-1 rounded">
+                        <img src="{{ asset('heart2.png') }}" class="h-5 w-5" alt="logo">
+                    </button>
                 </form>
             @else
             <form action="{{ route('threadcomment.unlike', $comment) }}" method="post" class="mr-3">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="text-red-500 bg-gray-300 p-1 rounded">Unlike</button>
+                <button type="submit" class="text-red-500 bg-gray-300 p-1 rounded">
+                    <img src="{{ asset('heart.png') }}" class="h-5 w-5" alt="logo">
+                </button>
             </form>
             @endif
             @endauth

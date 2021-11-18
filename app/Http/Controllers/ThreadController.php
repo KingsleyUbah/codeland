@@ -156,4 +156,12 @@ class ThreadController extends Controller
 
         return back();
     }
+
+    public function markSingleAsRead(Notification $notifId)
+    {
+      
+        DB::table('notifications')->where('id', $notifId)->delete();
+
+        return back();
+    }
 }

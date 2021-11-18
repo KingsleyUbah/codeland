@@ -1,7 +1,7 @@
 {{-- Displays list of threads wherever it gets included --}}
 <div>
     @forelse($threads as $thread)
-        <div class="bg-white my-2 flex relative hover:bg-red-100">
+        <div class="bg-white my-2 flex relative hover:bg-gray-100">
 
             <div class="bg-gray-600 w-1 mr-1">
 

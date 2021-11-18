@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.partials.thread-list')
+@include('layouts.partials.thread.thread-list')
 @endsection
 
 @section('topside')
-@include('layouts.partials.categories')
+@include('layouts.partials.sections.notifications')
+@include('layouts.partials.sections.categories')
 @endsection
 
 @section('heading')

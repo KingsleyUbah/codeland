@@ -1,6 +1,6 @@
 {{-- Code for Navigation menu --}}
 
-<div class="bg-gray-700 h-2/6">
+<div class="bg-gray-700 h-2/6 shadow-lg">
         <nav class="flex max-w-7xl justify-between p-6 text-2xl h-2/6 mx-auto bg-gray-700 text-white h-16" >
             <div class="flex justify-around items-center">
                 <div class="flex justify-around items-center" >
@@ -21,9 +21,6 @@
 
             <ul class="flex justify-around items-center font-body text-base">
                     @auth
-                    <li class="mx-6">
-                        <a class="flex justify-between items-center" href=""><img src="{{ asset('notifications.png') }}" class="h-8 w-8" alt="icon"><span class="p-1 bg-white text-red-500">{{ count(auth()->user()->unreadNotifications) }}</span></a>
-                    </li>
                     <li class="mr-6">
                         <a href="{{ route('userprofile', auth()->user()) }}" class="text-red-500 p-1 px-2">{{auth()->user()->name}}</a>
                     </li>

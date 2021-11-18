@@ -5,7 +5,7 @@
 @endsection
 
 @section('topside')
-@include('layouts.partials.profile')
+@include('layouts.partials.sections.profile')
 @endsection
 
 @section('content')

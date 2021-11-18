@@ -8,30 +8,30 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
 </head>
 <body class="bg-gray-200">    
-    @include('layouts.partials.navbar')    
-    <div class="max-w-7xl mx-auto flex justify-between divide-x divide-gray-400 items-center">
-            <div class="w-3/12">
-
+    @include('layouts.partials.sections.navbar')    
+    <div class="max-w-7xl mx-auto h-20 flex justify-between divide-x divide-gray-300 items-center">
+            <div class="w-3/12 p-5">
+                 
             </div>
-            <div class="w-9/12 flex items-center justify-between">
-                <div class="p-5">
+            <div class="w-9/12 flex items-center justify-between p-5">
+                <div class="">
                     @yield('heading')
                 </div>
                 @auth
-                <a class="rounded text-white" href="{{route('thread.create')}}"><img src="{{ asset('createMes.png') }}" class="h-16 w-16 p-5" alt="logo"></a>
+                <a class="rounded shadow bg-blue-800 p-2 text-white" href="{{route('thread.create')}}">Create Thread</a>
                 @endauth
             </div>
     </div>
 
     <hr class="border-gray-300 max-w-7xl mx-auto">
 
-    <div class="max-w-7xl h-full divide-x divide-gray-400 mx-auto flex font-body items-start text-lg">
+    <div class="max-w-7xl h-full divide-x divide-gray-300 mx-auto flex font-body items-start text-lg">
         <div class="w-3/12 h-full p-5">
             @yield('topside')
         </div>
         <div class="w-9/12 h-full p-5">
             @yield('section-heading')
-            <hr>
+            
             @yield('content')
         </div>
     </div>
@@ -45,8 +45,4 @@
   crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/standalone/selectize.min.js" integrity="sha512-pF+DNRwavWMukUv/LyzDyDMn8U2uvqYQdJN0Zvilr6DDo/56xPDZdDoyPDYZRSL4aOKO/FGKXTpzDyQJ8je8Qw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script>
-    $(function () {
-        $('#tag').selectize();
-    })
-</script>
+
