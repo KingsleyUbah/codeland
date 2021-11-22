@@ -10,15 +10,15 @@
                     <h1 class="text-red-900 text-base">last reply</h1>
                     <div>
                         <img src="{{ asset('profile.png') }}" class="h-4 w-4 mr-2 inline" alt="picture">
-                        <span class="text-lg text-gray-500">5m ago</span>
+                        <span class="text-lg text-gray-500">{{ $comment->created_at->shortRelativeDiffForHumans()}}</span>
                     </div>
                 </div>
                 <div class="mr-5">
-                    <h1 class="text-lg text-red-900">19</h1>
+                    <h1 class="text-lg text-red-900">{{ $thread->comments->count()}}</h1>
                     <span class="text-gray-500 text-base">replies</span>
                 </div>
                 <div class="mr-5">
-                    <h1 class="text-lg text-red-900">1.7k</h1>
+                    <h1 class="text-lg text-red-900">{{ $thread->count }}</h1>
                     <span class="text-gray-500 text-base">views</span>
                 </div>
                 <div class="mr-5">
@@ -26,7 +26,7 @@
                     <span class="text-gray-500 text-base">users</span>
                 </div>
                 <div class="mr-5">
-                    <h1 class="text-lg text-red-900">19</h1>
+                    <h1 class="text-lg text-red-900">{{ $thread->likes->count()}}</h1>
                     <span class="text-gray-500 text-base">likes</span>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Thread;
+use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\Like;
 use Illuminate\Http\Request;
@@ -79,7 +80,13 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        return view('thread.single', compact('thread'));
+        $thread->update([
+            'count' => $thread->count + 1,
+        ]);
+
+        $comment = Comment::where('commentable_id', $thread->id)->where('commentable_type', 'App\Models\Thread')->latest()->first();
+
+        return view('thread.single', compact('thread', 'comment'));
     }
 
     /**

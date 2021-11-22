@@ -7,7 +7,7 @@
                 <div class="text-red-900"> <a href="{{ route('userprofile', $comment->user)}}" class="font-bold hover:underline">{{$comment->user->username}}</a>  <span class="text-gray-500 ml-3 text-base">{{ Str::limit($comment->user->bio, 40) }}</span></div>
                 <h3 class="text-gray-500">{{$comment->created_at->shortRelativeDiffForHumans()}}</h3>
             </div>
-            <p class="w-full">{{$comment->body}}</p>
+            <p class="w-full mb-4">{{$comment->body}}</p>
             @include('layouts.partials.comment.comment-actions')
         </div>
     </div>      

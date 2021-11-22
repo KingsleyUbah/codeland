@@ -22,12 +22,12 @@
             <ul class="flex justify-around items-center font-body text-base">
                     @auth
                     <li class="mr-6">
-                        <a href="{{ route('userprofile', auth()->user()) }}" class="text-red-500 p-1 px-2">{{auth()->user()->name}}</a>
+                        <a href="{{ route('userprofile', auth()->user()) }}" class="text-red-500 hover:text-red-400 hover:underline p-1 px-2">{{auth()->user()->name}}</a>
                     </li>
                     <li>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <button type="submit" class="bg-red-500 p-1 flex rounded text-white">Log out</button>
+                            <button type="submit" class="bg-red-500 p-1 flex rounded hover:bg-red-400 text-white">Log out</button>
                         </form>
                     </li>
                     @endauth
