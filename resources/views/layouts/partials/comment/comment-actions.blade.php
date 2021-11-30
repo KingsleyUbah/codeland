@@ -45,11 +45,12 @@
             </form>
         @endif
             <a class="text-red-900 cursor-pointer hover:underline flex items-center mr-5" onClick="toggleReplies('{{$comment->id}}')">
-                {{$comment->comments->count()}} {{ Str::plural('Reply', $comment->comments->count()) }}
-                
                 @if($comment->comments->count() > 0)
+                    {{$comment->comments->count()}} {{ Str::plural('Reply', $comment->comments->count()) }}
                     <img src="{{ asset('down-arrow.png') }}" class="ml-1 h-4 w-4" id="first-arrow-{{$comment->id}}" alt="reply">
                     <img src="{{ asset('up-arrow.png') }}" class="ml-1 h-3 w-3 hidden" id="second-arrow-{{$comment->id}}" alt="reply">
+                @else
+                    <span>No replies yet</span>
                 @endif
             </a>
 
@@ -58,13 +59,24 @@
             </a>
         </div>
         @endauth
-        <div class="flex justify-between items-center text-sm">    
-            <span class="mr-3 italic text-red-900">{{ $comment->likes->count() }} {{ Str::plural('person', $comment->likes->count()) }} liked this</span>
+        <div class="flex justify-between items-center text-sm">
+            @auth
+            @if(auth()->user()->id === $comment->commentable->user_id)
+            <form action="{{ route('markAsSolution') }}" method="post">
+                @csrf
+                <input type="hidden" name="threadId" value="{{$thread->id}}">
+                <input type="hidden" name="solutionId" value="{{$comment->id}}">
+                <button type="submit" class="hover:underline text-red-900 mx-5">Mark as solution</button>
+            </form>
+            @endif
+            @endauth
+            <div class="flex justify-between items-center text-sm">
+            <span class="text-gray-500 mr-1 text-lg">{{ $comment->likes->count() }}</span>
             @auth
             @if(!$comment->likedBy(auth()->user()))
                 <form action="{{ route('threadcomment.like', $comment) }}" method="post" class="mr-3">
                     @csrf
-                    <button type="submit" class="text-blue-500 bg-gray-300 hover:bg-red-300 p-1 rounded">
+                    <button type="submit" class="hover:bg-red-300 rounded">
                         <img src="{{ asset('heart2.png') }}" class="h-5 w-5" alt="logo">
                     </button>
                 </form>
@@ -72,11 +84,12 @@
             <form action="{{ route('threadcomment.unlike', $comment) }}" method="post" class="mr-3">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="text-red-500 bg-gray-300 p-1 rounded">
+                <button type="submit" class="hover:bg-red-300 rounded">
                     <img src="{{ asset('heart.png') }}" class="h-5 w-5" alt="logo">
                 </button>
             </form>
             @endif
             @endauth
+            </div>
         </div>
     </div>

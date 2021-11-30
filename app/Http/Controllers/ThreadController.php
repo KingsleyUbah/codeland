@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\Like;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 
 class ThreadController extends Controller
@@ -85,8 +86,9 @@ class ThreadController extends Controller
         ]);
 
         $comment = Comment::where('commentable_id', $thread->id)->where('commentable_type', 'App\Models\Thread')->latest()->first();
+        $solutions = Comment::where('id', $thread->solution)->where('commentable_type', 'App\Models\Thread')->get();
 
-        return view('thread.single', compact('thread', 'comment'));
+        return view('thread.single', compact('thread', 'comment', 'solutions'));
     }
 
     /**
@@ -170,5 +172,16 @@ class ThreadController extends Controller
         DB::table('notifications')->where('id', $notifId)->delete();
 
         return back();
+    }
+
+    public function markAsSolution(Request $request)
+    {
+        
+        $thread = Thread::find($request->threadId);
+        $thread->solution = $request->solutionId;
+
+        if($thread->save()) {
+            return back();
+        }
     }
 }

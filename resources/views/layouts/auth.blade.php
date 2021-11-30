@@ -7,12 +7,14 @@
     <title>CodeLand - No.1 Coding Forum</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
 </head>
-<body class="bg-gray-100">    
-    <div class="container">
-        <nav class="flex justify-between p-6 text-2xl bg-gray-700 text-white h-16" >
-            <div class="flex justify-around items-center ml-20">
-                <img src="{{ asset('codelandlogo.png') }}" class="h-9 w-9" alt="">
-                <h1 class="text-3xl ml-2 font-semibold lowercase">Codeland</h1>
+<body>    
+    <div class="bg-gray-100">
+        <nav class="w-full p-6 text-2xl bg-gray-700 text-white h-2/6" >
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-start items-center w-1/6">
+                    <img src="{{ asset('codelandlogo.png') }}" class="h-9 w-9" alt="">
+                    <h1 class="text-2xl ml-2 font-semibold lowercase">Codeland</h1>
+                </div>
             </div>
         </nav>
             @yield('content')

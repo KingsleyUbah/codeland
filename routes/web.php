@@ -48,6 +48,7 @@ Route::put('/thread/{thread}', [ThreadController::class, 'update'])->name('threa
 Route::delete('/thread/{thread}', [ThreadController::class, 'destroy'])->name('thread.destroy')->middleware('auth');
 Route::post('/thread/{thread}/like', [ThreadController::class, 'like'])->name('thread.like')->middleware('auth');
 Route::delete('/thread/{thread}/unlike', [ThreadController::class, 'unlike'])->name('thread.unlike')->middleware('auth');
+Route::post('/thread/mark-as-solution', [ThreadController::class, 'markAsSolution'])->name('markAsSolution')->middleware('auth');
 
 
 // Comment routes

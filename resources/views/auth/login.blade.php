@@ -1,24 +1,24 @@
 @extends('layouts.auth')
 
 @section('content')
-     <div class="bg-yellow-200 text-center h-60 p-5 font-body">
+     <div class="bg-blue-100 text-center h-60 p-5 font-body">
          <div class=" max-w-lg mx-auto mt-5 mb-5">
             <h1 class="text-5xl mb-5">Welcome Back!</h1>
         </div>
         <p class="text-xl">Please log in to join the discussion</p>
     </div>
 
-    <div class="max-w-xl mx-auto my-32">
+    <div class="max-w-2xl mx-auto my-32">
         @if(session('status'))
             <div class="bg-red-500 p-4 rounded-lg mb-6 text-white text-center">
                 {{ session('status') }}
             </div>
         @endif
-        <form action="{{ route('login') }}" method="post">
+        <form action="{{ route('login') }}" method="post" class="text-lg">
             @csrf
             <div class="mb-4">
                 <label for="email" class="sr-only">Email</label>
-                <input type="email" name="email" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror" id="email" placeholder="Your email" value="{{ old('email') }}">
+                <input type="email" name="email" class="bg-white w-full p-4 @error('email') border-red-500 @enderror" id="email" placeholder="Your email" value="{{ old('email') }}">
 
                 @error('email')
                     <div class="text-red-500 mt-2 text-sm">
@@ -29,7 +29,7 @@
 
             <div class="mb-4">
                 <label for="password" class="sr-only">Password</label>
-                <input type="password" name="password" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('password') border-red-500 @enderror" id="password" placeholder="Choose a password" value="">
+                <input type="password" name="password" class="bg-white w-full p-4 @error('password') border-red-500 @enderror" id="password" placeholder="Choose a password" value="">
 
                 @error('password')
                     <div class="text-red-500 mt-2 text-sm">
@@ -46,7 +46,7 @@
             </div> 
 
             <div>
-                <button class="bg-blue-500 text-white px-4 py-3 rounded font-medium h-full w-full">Log In</button>
+                <button class="bg-blue-500 text-white px-5 py-4 rounded font-medium h-full w-full">Log In</button>
             </div>  
         </form>
     </div>

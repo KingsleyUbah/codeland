@@ -3,12 +3,12 @@
 @auth
 @if(auth()->user()->unreadNotifications->count() > 0)
 <div class="flex items-center w-24 mb-1">
-    <h1 class="font-heading mr-3">Notifications</h1>
-    <span class="rounded-lg text-white font-body text-sm flex items-center h-5 w-5 p-1 bg-red-500">{{ count(auth()->user()->unreadNotifications) }}</span>
+    <h1 class="mr-3 font-body font-semibold">Notifications</h1>
+    <span class="text-white font-body text-sm flex items-center rounded h-5 w-5 p-1 bg-red-500">{{ count(auth()->user()->unreadNotifications) }}</span>
 </div>
 
 
-<ul class="mb-7 text-base text-gray-700">
+<ul class="mb-5 text-base text-gray-700">
     @foreach(auth()->user()->unreadNotifications as $notification)
     <li class="mb-3">
         
@@ -20,5 +20,6 @@
     @endforeach
 
 </ul>
+<hr class="border-gray-300">
 @endif
 @endauth

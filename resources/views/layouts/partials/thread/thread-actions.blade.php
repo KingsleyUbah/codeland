@@ -13,11 +13,11 @@
         </div>
     @endauth
         <div class="flex items-center">
-            <span class="mr-3 italic text-red-900">{{ $thread->likes->count() }} {{ Str::plural('person', $thread->likes->count()) }} liked this</span>
+            <span class="mr-1 text-gray-500">{{ $thread->likes->count() }}</span>
                 @if(auth()->user() === null || !$thread->likedBy(auth()->user()))
                     <form action="{{ route('thread.like', $thread) }}" method="post" class="mr-3">
                         @csrf
-                        <button type="submit" class="text-blue-500 bg-gray-300 p-1 rounded shadow-md">
+                        <button type="submit" class="text-blue-500 rounded shadow-md">
                             <img src="{{ asset('heart2.png') }}" class="h-5 w-5" alt="logo">
                         </button>
                     </form>
@@ -25,7 +25,7 @@
                     <form action="{{ route('thread.unlike', $thread) }}" method="post" class="mr-3">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-500 bg-gray-300 p-1 rounded">
+                        <button type="submit" class="text-red-500 rounded">
                             <img src="{{ asset('heart.png') }}" class="h-5 w-5" alt="logo">
                         </button>
                     </form>
