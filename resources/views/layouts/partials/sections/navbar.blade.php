@@ -23,18 +23,23 @@
                     @auth
                     <li class="mr-6">
                         <a href="{{ route('userprofile', auth()->user()) }}" class="flex justify-center">
-                            <div class="hover:bg-gray-500 rounded-3xl p-2">
+                            <div class="hover:bg-gray-600 rounded-3xl p-1 flex items-start relative">
                                 <img src="{{ asset('bell.png') }}" class="h-8 w-8" alt="notification">
+                                @auth
+                                @if(auth()->user()->unreadNotifications->count() > 0)
+                                <span class="text-white font-body text-xs flex items-center rounded h-4 w-4 relative right-3 p-1 bg-red-500">{{ count(auth()->user()->unreadNotifications) }}</span>
+                                @endif
+                                @endauth
                             </div>
                         </a>
                     </li>
                     <li>
                         <div>
-                            <img src="{{ asset('profile.png') }}" class="h-8 w-8" alt="notification">
-                            <div class="p-1 bg-black w-52 text-base hidden">
+                            <img src="{{ asset('profile.png') }}" class="h-8 w-8 prof" alt="notification">
+                            <div class="p-1 bg-gray-700 border-gray-300 border-2 w-52 text-sm absolute z-10 hidden right-40 rounded mt-1" id="nav-overlay">
                                 <ul>
                                     <li class="mb-2">
-                                        <a href="" class="p-1 hover:bg-gray-500 px-2 block">
+                                        <a href="" class="p-1 hover:bg-gray-500 px-2 hover:text-blue-300 block">
                                             <span>{{auth()->user()->name}}</span> <br>
                                             <span>{{auth()->user()->username}}</span>
                                         </a> 
@@ -44,14 +49,14 @@
                                         <a href="" class="hover:bg-gray-500 p-1 px-2 hover:text-blue-300 block">Dashboard</a>
                                     </li>
                                     <li class="mb-1">
-                                        <a href="" class="hover:bg-gray-500 p-1 px-2 block">Create Post</a>
+                                        <a href="" class="hover:bg-gray-500 p-1 px-2 hover:text-blue-300 block">Create Post</a>
                                     </li>
                                     <li class="mb-1">
-                                        <a href="" class="hover:bg-gray-500 p-1 mb-1 px-2 block">Settings</a>
+                                        <a href="" class="hover:bg-gray-500 p-1 mb-1 hover:text-blue-300 px-2 block">Settings</a>
                                     </li>
                                     <li class="mb-1">
                                         <hr class="border-gray-600">
-                                        <a href="" class="hover:bg-gray-500 p-1 my-1 px-2 block">Sign out</a>
+                                        <a href="" class="hover:bg-gray-500 p-1 my-1 hover:text-blue-300 px-2 block">Sign out</a>
                                     </li>
                                 </ul>
                             </div>

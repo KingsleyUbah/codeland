@@ -64,19 +64,23 @@
                         <h3 class="text-gray-500">{{$solution->created_at->shortRelativeDiffForHumans()}}</h3>
                     </div>
                     <p class="w-full mb-4">{{$solution->body}}</p>
-                    @include('layouts.partials.comment.comment-actions')
+                    @include('layouts.partials.comment.solution-actions')
                 </div>
             </div>      
         </div>
         @endforeach
 
         @foreach($thread->comments as $comment)
+        @if($comment->id === $thread->solution)
+            @continue
+        @else
             <div class="w-full" id="single-comment">
                 @include('layouts.partials.comment.commenter')            
                 <hr>
                 @include('layouts.partials.reply.reply-form')
                 @include('layouts.partials.reply.replies')
             </div>
+        @endif
         @endforeach
 
 @endsection

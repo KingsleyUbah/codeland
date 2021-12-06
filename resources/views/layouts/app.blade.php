@@ -18,7 +18,7 @@
                     @yield('heading')
                 </div>
                 @auth
-                <a class="shadow-lg font-semibold bg-blue-500 hover:bg-red-900 p-2 text-white font-body" href="{{route('thread.create')}}">Create Thread</a>
+                <a class="shadow-lg font-semibold bg-blue-500 hover:bg-red-900 p-2 text-gray-200 rounded-lg font-body" href="{{route('thread.create')}}" id="thread-btn">Create Thread</a>
                 @endauth
             </div>
     </div>

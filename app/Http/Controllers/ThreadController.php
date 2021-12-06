@@ -91,6 +91,22 @@ class ThreadController extends Controller
         return view('thread.single', compact('thread', 'comment', 'solutions'));
     }
 
+    public function showActive()
+    {
+    
+        $threads = Thread::whereNull('solution')->paginate(15);
+
+        return view('thread.index', compact('threads'));
+    }
+
+    public function showClosed()
+    {
+    
+        $threads = Thread::whereNotNull('solution')->paginate(15);
+
+        return view('thread.index', compact('threads'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

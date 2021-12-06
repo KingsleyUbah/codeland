@@ -1,21 +1,24 @@
-const overlay = document.querySelector('.profile-overlay')
-const editBtn = document.querySelector('.profile-edit')
 const cancelBtn = document.querySelector('.cancel-btn')
-const closeBtn = document.querySelector('.profile-close')
+const profileImg = document.querySelector('.prof')
+const overlay = document.querySelector('#nav-overlay')
 
+profileImg.addEventListener("mouseover", () => {
+    document.querySelector('#nav-overlay').classList.remove('hidden');
+})
 
-editBtn.addEventListener('click', () => {
-    overlay.classList.remove('hidden');
-    overlay.classList.add('flex');
+profileImg.addEventListener("mouseout", () => {
+    document.querySelector('#nav-overlay').classList.add('hidden');
+})
+
+overlay.addEventListener("mouseover", () => {
+    document.querySelector('#nav-overlay').classList.remove('hidden');
+})
+
+overlay.addEventListener("mouseout", () => {
+    document.querySelector('#nav-overlay').classList.add('hidden');
 })
 
 
-closeBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    overlay.classList.add('hidden');
-    overlay.classList.remove('flex');
-})
 
 
 function toggleReplies(id) {
