@@ -22,7 +22,14 @@
                             <span class="text-base">{{ $thread->comments->count() }}</span>
                         </div>
                     </div>
-                    <h5 class="text-sm my-3 italic">Posted {{$thread->created_at->diffForHumans()}} by <a href="{{ route('userprofile', $thread->user) }}" class="text-red-500 hover:text-red-400 hover:underline">{{$thread->user->name}}</a></h5>
+                    <h5 class="text-sm my-3 italic">Posted {{$thread->created_at->diffForHumans()}} by 
+                        <a href="{{ route('userprofile', $thread->user) }}" class="text-red-500 hover:text-red-400 hover:underline">{{$thread->user->name}}</a> in
+                        @forelse($thread->tags as $tag)
+                            <span class="bg-gray-700 p-1 rounded text-white mr-1">#{{ $tag->name}}</span>
+                            @empty
+                            <span>No category</span>
+                        @endforelse
+                    </h5>
                 </div>
             </div>
         </div>

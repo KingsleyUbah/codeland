@@ -13,7 +13,7 @@
         </div>
     @endauth
         <div class="flex items-center">
-            <span class="mr-1 text-gray-500">{{ $thread->likes->count() }}</span>
+            <span class="mr-1 text-gray-500">{{ $thread->likes->count() }} {{ Str::plural('like', $thread->likes->count()) }}</span>
                 @if(auth()->user() === null || !$thread->likedBy(auth()->user()))
                     <form action="{{ route('thread.like', $thread) }}" method="post" class="mr-3">
                         @csrf

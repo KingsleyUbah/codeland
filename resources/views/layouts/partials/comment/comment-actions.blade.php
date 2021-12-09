@@ -71,7 +71,7 @@
             @endif
             @endauth
             <div class="flex justify-between items-center text-sm">
-            <span class="text-gray-500 mr-1 text-lg">{{ $comment->likes->count() }}</span>
+            <span class="text-gray-500 mr-1 text-base">{{ $comment->likes->count() }} {{ Str::plural('like', $comment->likes->count()) }}</span>
             @auth
             @if(!$comment->likedBy(auth()->user()))
                 <form action="{{ route('threadcomment.like', $comment) }}" method="post" class="mr-3">

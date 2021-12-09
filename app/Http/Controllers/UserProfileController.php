@@ -63,4 +63,9 @@ class UserProfileController extends Controller
         return back()->withMessage('Profile Updated!');
         
     }
+
+    public function notifications()
+    {
+        return view('notifications');
+    }
 }

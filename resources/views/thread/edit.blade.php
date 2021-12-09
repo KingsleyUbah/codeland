@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('topside')
-@include('layouts.partials.sections.notifications')
 @include('layouts.partials.sections.categories')
 @endsection
 

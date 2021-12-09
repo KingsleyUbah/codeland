@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('topside')
-@include('layouts.partials.sections.notifications')
 {{-- Categories list --}}
 <div class="my-2">
 <h1 class="p-1 mb-1 font-body font-semibold">All Categories</h1>

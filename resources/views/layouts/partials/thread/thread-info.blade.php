@@ -19,11 +19,11 @@
                 </div>
                 <div class="mr-5">
                     <h1 class="text-lg text-red-900">{{ $thread->comments->count()}}</h1>
-                    <span class="text-gray-500 text-base">replies</span>
+                    <span class="text-gray-500 text-base">{{ Str::plural('reply', $thread->comments->count()) }}</span>
                 </div>
                 <div class="mr-5">
                     <h1 class="text-lg text-red-900">{{ $thread->count }}</h1>
-                    <span class="text-gray-500 text-base">views</span>
+                    <span class="text-gray-500 text-base">{{ Str::plural('view', $thread->count()) }}</span>
                 </div>
                 <div class="mr-5">
                     <h1 class="text-lg text-red-900">11</h1>
@@ -31,12 +31,12 @@
                 </div>
                 <div class="mr-5">
                     <h1 class="text-lg text-red-900">{{ $thread->likes->count()}}</h1>
-                    <span class="text-gray-500 text-base">likes</span>
+                    <span class="text-gray-500 text-base">{{ Str::plural('like', $thread->likes->count()) }}</span>
                 </div>
                 @if($solutions->count() > 0)
                 <div class="mr-5">
                     <h1 class="text-lg text-green-600">{{ $solutions->count()}}</h1>
-                    <span class="text-gray-500 text-base">solutions</span>
+                    <span class="text-gray-500 text-base">{{ Str::plural('solution', $solutions->count()) }}</span>
                 </div>
                 @endif
             </div>

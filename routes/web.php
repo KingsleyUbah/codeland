@@ -27,6 +27,11 @@ Route::get('/', function () {
     
 })->name('home');
 
+Route::get('/notifications', function () {
+    return view('notifications');
+    
+})->name('notifications');
+
 // Log in routes
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
@@ -41,8 +46,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 // Thread routes
 Route::get('/threads', [ThreadController::class, 'index'])->name('thread.index');
 Route::get('/thread/new', [ThreadController::class, 'create'])->name('thread.create')->middleware('auth');
-Route::get('/threads/active', [ThreadController::class, 'showActive'])->name('thread.active')->middleware('auth');
-Route::get('/threads/closed', [ThreadController::class, 'showClosed'])->name('thread.closed')->middleware('auth');
+Route::get('/threads/active', [ThreadController::class, 'showActive'])->name('thread.active');
+Route::get('/threads/closed', [ThreadController::class, 'showClosed'])->name('thread.closed');
 Route::post('/thread', [ThreadController::class, 'store'])->name('thread.store')->middleware('auth');
 Route::get('/threads/{thread}/edit', [ThreadController::class, 'edit'])->name('thread.edit')->middleware('auth');
 Route::get('/threads/{thread}', [ThreadController::class, 'show'])->name('thread.show');
@@ -71,6 +76,7 @@ Route::get('/{user}', [UserProfileController::class, 'index'])->name('userprofil
 Route::put('/{user}', [UserProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 Route::get('/{user}/editprofile', [UserProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
 
+
 // Dashboard route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -85,5 +91,6 @@ Route::get('/markAsRead', function () {
 
     return back();
 })->name('markAsRead');
+
 
 

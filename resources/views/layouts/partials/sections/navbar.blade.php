@@ -22,12 +22,12 @@
             <ul class="flex justify-around items-center font-body text-base font-semibold">
                     @auth
                     <li class="mr-6">
-                        <a href="{{ route('userprofile', auth()->user()) }}" class="flex justify-center">
+                        <a href="{{ route('notifications') }}" class="flex justify-center">
                             <div class="hover:bg-gray-600 rounded-3xl p-1 flex items-start relative">
                                 <img src="{{ asset('bell.png') }}" class="h-8 w-8" alt="notification">
                                 @auth
                                 @if(auth()->user()->unreadNotifications->count() > 0)
-                                <span class="text-white font-body text-xs flex items-center rounded h-4 w-4 relative right-3 p-1 bg-red-500">{{ count(auth()->user()->unreadNotifications) }}</span>
+                                <span class="text-white font-body text-xs flex items-center rounded-lg h-6 w-5 relative right-4 -top-2 p-1 bg-red-500 border-gray-700 border">{{ count(auth()->user()->unreadNotifications) }}</span>
                                 @endif
                                 @endauth
                             </div>
@@ -56,7 +56,10 @@
                                     </li>
                                     <li class="mb-1">
                                         <hr class="border-gray-600">
-                                        <a href="" class="hover:bg-gray-500 p-1 my-1 hover:text-blue-300 px-2 block">Sign out</a>
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <button class="hover:bg-gray-500 p-1 my-1 hover:text-blue-300 px-2 block w-full">Sign out</button>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
