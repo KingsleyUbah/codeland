@@ -6,26 +6,23 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Carbon\Carbon;
 
-class RepliedToThread extends Notification
+class LikedThread extends Notification
 {
     use Queueable;
 
     protected $thread;
     protected $user;
-    protected $comment;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($thread, $user, $comment)
+    public function __construct($thread, $user)
     {
         $this->thread = $thread;
         $this->user = $user;
-        $this->comment = $comment;
     }
 
     /**
@@ -39,7 +36,14 @@ class RepliedToThread extends Notification
         return ['database'];
     }
 
-    /*
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+
+    /* 
     public function toMail($notifiable)
     {
         return (new MailMessage)
@@ -47,21 +51,13 @@ class RepliedToThread extends Notification
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
-
     */
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function toDatabase($notifiable)
     {
         return [
             'thread' => $this->thread,
             'user' => $this->user,
-            'comment' => $this->comment
         ];
     }
 

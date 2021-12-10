@@ -7,25 +7,13 @@ use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\Like;
 use Illuminate\Http\Request;
+use App\Notifications\LikedThread;
 use Illuminate\Support\Facades\Input;
 
 
 class ThreadController extends Controller
 {
-    /*
-    function __construct() 
-    {
-        $this.middleware('auth', ['except' => 'index']);
-    }
-    */
-    
-    
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         if($request->has('tags')) {
@@ -42,22 +30,13 @@ class ThreadController extends Controller
         return view('thread.index', compact('threads'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('thread.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -73,12 +52,7 @@ class ThreadController extends Controller
         return back()->withMessage('Thread Created!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Thread  $thread
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Thread $thread)
     {
         $thread->update([
@@ -107,24 +81,13 @@ class ThreadController extends Controller
         return view('thread.index', compact('threads'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Thread  $thread
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Thread $thread)
     {
         return view('thread.edit', compact('thread'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Thread  $thread
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Thread $thread)
     {
         $this->validate($request, [
@@ -171,6 +134,8 @@ class ThreadController extends Controller
         $thread->likes()->create([
             'user_id' => $request->user()->id,
         ]);
+
+        $thread->user->notify(new LikedThread($thread, $request->user()));
     
         return back();
     }

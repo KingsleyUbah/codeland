@@ -23,7 +23,7 @@ class CommentController extends Controller
 
         $thread->comments()->save($comment);
 
-        $thread->user->notify(new RepliedToThread($thread, auth()->user()));
+        $thread->user->notify(new RepliedToThread($thread, auth()->user(), $comment));
 
         return back()->withMessage('Comment Created!');
     }

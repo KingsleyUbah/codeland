@@ -4,7 +4,7 @@
         <h3 class="font-bold mr-5">Showing:</h3>
         <a class="px-2 py-1 cursor-pointer bg-red-500 mr-5 text-white hover:bg-red-300" href="{{ route('thread.index') }}">All</a>
         <a class="px-2 py-1 cursor-pointer mr-5 hover:bg-red-300" href="{{ route('thread.active') }}">Open</a>
-        <a class="px-2 py-1 cursor-pointer mr-5 hover:bg-red-300" href="{{ route('thread.closed') }}">Closed</a>
+        <a class="px-2 py-1 cursor-pointer mr-5 hover:bg-red-300" href="{{ route('thread.closed') }}">Solved</a>
     </div>
     @forelse($threads as $thread)
         <div class="bg-white my-2 flex relative hover:bg-gray-100">
