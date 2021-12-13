@@ -26,8 +26,9 @@ class ThreadController extends Controller
             $threads = Thread::paginate(15);
         }
 
-        
-        return view('thread.index', compact('threads'));
+        $activePage = "all";
+
+        return view('thread.index', compact('threads', 'activePage'));
     }
 
 
@@ -61,6 +62,7 @@ class ThreadController extends Controller
 
         $comment = Comment::where('commentable_id', $thread->id)->where('commentable_type', 'App\Models\Thread')->latest()->first();
         $solutions = Comment::where('id', $thread->solution)->where('commentable_type', 'App\Models\Thread')->get();
+        
 
         return view('thread.single', compact('thread', 'comment', 'solutions'));
     }
@@ -69,16 +71,18 @@ class ThreadController extends Controller
     {
     
         $threads = Thread::whereNull('solution')->paginate(15);
+        $activePage = "open";
 
-        return view('thread.index', compact('threads'));
+        return view('thread.index', compact('threads', 'activePage'));
     }
 
     public function showClosed()
     {
     
         $threads = Thread::whereNotNull('solution')->paginate(15);
+        $activePage = "solved";
 
-        return view('thread.index', compact('threads'));
+        return view('thread.index', compact('threads', 'activePage'));
     }
 
 
@@ -106,12 +110,7 @@ class ThreadController extends Controller
         return redirect()->route('thread.show', $thread->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Thread  $thread
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Thread $thread)
     {
         
@@ -160,6 +159,17 @@ class ThreadController extends Controller
         
         $thread = Thread::find($request->threadId);
         $thread->solution = $request->solutionId;
+
+        if($thread->save()) {
+            return back();
+        }
+    }
+
+    public function unmarkAsSolution(Request $request)
+    {
+        
+        $thread = Thread::find($request->threadId);
+        $thread->solution = NULL;
 
         if($thread->save()) {
             return back();

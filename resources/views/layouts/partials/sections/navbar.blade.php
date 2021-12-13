@@ -39,7 +39,7 @@
                             <div class="p-1 bg-gray-700 border-gray-300 border-2 w-52 text-sm absolute z-10 hidden right-40 rounded mt-1" id="nav-overlay">
                                 <ul>
                                     <li class="mb-2">
-                                        <a href="" class="p-1 hover:bg-gray-500 px-2 hover:text-blue-300 block">
+                                        <a href="{{ route('userprofile', auth()->user()) }}" class="p-1 hover:bg-gray-500 px-2 hover:text-blue-300 block">
                                             <span>{{auth()->user()->name}}</span> <br>
                                             <span>{{auth()->user()->username}}</span>
                                         </a> 
@@ -49,10 +49,10 @@
                                         <a href="" class="hover:bg-gray-500 p-1 px-2 hover:text-blue-300 block">Dashboard</a>
                                     </li>
                                     <li class="mb-1">
-                                        <a href="" class="hover:bg-gray-500 p-1 px-2 hover:text-blue-300 block">Create Post</a>
+                                        <a href="{{ route('thread.create') }}" class="hover:bg-gray-500 p-1 px-2 hover:text-blue-300 block">Create Post</a>
                                     </li>
                                     <li class="mb-1">
-                                        <a href="" class="hover:bg-gray-500 p-1 mb-1 hover:text-blue-300 px-2 block">Settings</a>
+                                        <a href="{{ route('userprofile', auth()->user()) }}" class="hover:bg-gray-500 p-1 mb-1 hover:text-blue-300 px-2 block">Settings</a>
                                     </li>
                                     <li class="mb-1">
                                         <hr class="border-gray-600">

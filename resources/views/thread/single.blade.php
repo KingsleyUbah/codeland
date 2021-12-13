@@ -3,7 +3,7 @@
 @section('topside')
 {{-- Categories list --}}
 <div class="my-2">
-<h1 class="p-1 mb-1 font-body font-semibold">All Categories</h1>
+<h1 class="p-1 mb-1 font-body">All Categories</h1>
 
 <ul>
     @foreach($tags as $tag)
@@ -65,7 +65,11 @@
                     <p class="w-full mb-4">{{$solution->body}}</p>
                     @include('layouts.partials.comment.solution-actions')
                 </div>
-            </div>      
+            </div> 
+            
+            <hr>
+            @include('layouts.partials.reply.solution-form')
+            @include('layouts.partials.reply.solution-replies')
         </div>
         @endforeach
 

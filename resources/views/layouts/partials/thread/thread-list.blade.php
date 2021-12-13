@@ -2,9 +2,23 @@
 <div>
     <div class="flex justify-between w-32 text-base items-center mb-4">
         <h3 class="font-bold mr-5">Showing:</h3>
-        <a class="px-2 py-1 cursor-pointer bg-red-500 mr-5 text-white hover:bg-red-300" href="{{ route('thread.index') }}">All</a>
-        <a class="px-2 py-1 cursor-pointer mr-5 hover:bg-red-300" href="{{ route('thread.active') }}">Open</a>
-        <a class="px-2 py-1 cursor-pointer mr-5 hover:bg-red-300" href="{{ route('thread.closed') }}">Solved</a>
+            @if($activePage == "all")
+            <a class="px-2 py-1 cursor-pointer bg-red-500 mr-5 text-white hover:bg-red-300 bg-red-500" href="{{ route('thread.index') }}">All</a>
+            @else
+            <a class="px-2 py-1 cursor-pointer mr-5 hover:bg-red-300" href="{{ route('thread.index') }}">All</a>
+            @endif
+
+            @if($activePage == "open")
+            <a class="px-2 py-1 cursor-pointer mr-5 text-white hover:bg-red-300 bg-red-500" href="{{ route('thread.active') }}">Open</a>
+            @else 
+            <a class="px-2 py-1 cursor-pointer mr-5 hover:bg-red-300" href="{{ route('thread.active') }}">Open</a>
+            @endif
+
+            @if($activePage == "solved")
+            <a class="px-2 py-1 cursor-pointer mr-5 text-white hover:bg-red-300 bg-red-500" href="{{ route('thread.closed') }}">Solved</a>
+            @else
+            <a class="px-2 py-1 cursor-pointer mr-5 hover:bg-red-300" href="{{ route('thread.closed') }}">Solved</a>
+            @endif
     </div>
     @forelse($threads as $thread)
         <div class="bg-white my-2 flex relative hover:bg-gray-100">

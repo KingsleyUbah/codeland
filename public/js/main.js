@@ -27,6 +27,7 @@ function toggleReplies(id) {
     document.querySelector('#reply-'+id).classList.toggle('hidden');
 }
 
+
 function toggleForm(id) {
     document.querySelector('.reply-form-'+id).classList.toggle('hidden');
 }

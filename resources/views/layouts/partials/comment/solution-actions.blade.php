@@ -45,10 +45,10 @@
             </form>
         @endif
             <a class="text-red-900 cursor-pointer hover:underline flex items-center mr-5" onClick="toggleReplies('{{$solution->id}}')">
-                @if($comment->comments->count() > 0)
-                    {{$comment->comments->count()}} {{ Str::plural('Reply', $comment->comments->count()) }}
-                    <img src="{{ asset('down-arrow.png') }}" class="ml-1 h-4 w-4" id="first-arrow-{{$comment->id}}" alt="reply">
-                    <img src="{{ asset('up-arrow.png') }}" class="ml-1 h-3 w-3 hidden" id="second-arrow-{{$comment->id}}" alt="reply">
+                @if($solution->comments->count() > 0)
+                    {{$solution->comments->count()}} {{ Str::plural('Reply', $solution->comments->count()) }}
+                    <img src="{{ asset('down-arrow.png') }}" class="ml-1 h-4 w-4" id="first-arrow-{{$solution->id}}" alt="reply">
+                    <img src="{{ asset('up-arrow.png') }}" class="ml-1 h-3 w-3 hidden" id="second-arrow-{{$solution->id}}" alt="reply">
                 @else
                     <span>No replies yet</span>
                 @endif
@@ -62,10 +62,10 @@
         <div class="flex justify-between items-center text-sm">
             @auth
             @if(auth()->user()->id === $solution->commentable->user_id)
-            <form action="{{ route('markAsSolution') }}" method="post">
+            <form action="{{ route('unmarkAsSolution') }}" method="post">
                 @csrf
                 <input type="hidden" name="threadId" value="{{$thread->id}}">
-                <input type="hidden" name="solutionId" value="{{$comment->id}}">
+                <input type="hidden" name="solutionId" value="{{$solution->id}}">
                 <button type="submit" class="hover:underline text-red-900 mx-5">Unmark as solution</button>
             </form>
             @endif
