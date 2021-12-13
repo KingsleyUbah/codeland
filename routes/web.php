@@ -22,8 +22,10 @@ use App\Http\Controllers\UserProfileController;
 */
 
 Route::get('/', function () {
+    $activePage = "all";
+    $tag_name = null;
     $threads = App\Models\Thread::paginate(15);
-    return view('home', compact('threads'));
+    return view('home', compact('threads', 'activePage', 'tag_name'));
     
 })->name('home');
 

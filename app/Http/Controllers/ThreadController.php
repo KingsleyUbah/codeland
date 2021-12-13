@@ -16,19 +16,21 @@ class ThreadController extends Controller
 
     public function index(Request $request)
     {
+        $activePage = "all";
+
         if($request->has('tags')) {
-            
+
             $tag = Tag::find($request->tags);
+            $tag_name = $tag->name;
             $threads = $tag->threads;
 
         } else {
-
+            $tag_name = null;
             $threads = Thread::paginate(15);
         }
 
-        $activePage = "all";
 
-        return view('thread.index', compact('threads', 'activePage'));
+        return view('thread.index', compact('threads', 'activePage', 'tag_name'));
     }
 
 
@@ -69,20 +71,22 @@ class ThreadController extends Controller
 
     public function showActive()
     {
-    
+
+        $tag_name = null;
         $threads = Thread::whereNull('solution')->paginate(15);
         $activePage = "open";
 
-        return view('thread.index', compact('threads', 'activePage'));
+        return view('thread.index', compact('threads', 'activePage', 'tag_name'));
     }
 
     public function showClosed()
     {
     
+        $tag_name = null;
         $threads = Thread::whereNotNull('solution')->paginate(15);
         $activePage = "solved";
 
-        return view('thread.index', compact('threads', 'activePage'));
+        return view('thread.index', compact('threads', 'activePage', 'tag_name'));
     }
 
 
